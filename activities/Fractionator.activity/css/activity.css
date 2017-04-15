@@ -1,3 +1,88 @@
 #main-toolbar #activity-button {
   background-image: url(../activity/activity-icon.svg);
 }
+
+#game {
+	display: none;
+	text-align: center;
+	margin: auto;
+    width: 50%;
+}
+
+#menu {
+	text-align: center;
+	margin: auto;
+    width: 300px;
+}
+
+#gameOver {
+	display: none;
+	text-align: center;
+	margin: auto;
+    width: 300px;
+}
+
+#diffRadio, #amtRadio {
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.spacer {
+	margin-right: 20px;
+}
+
+#start {
+    width: 100px;
+	background-color: green;
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+
+
+ol.simple_with_animation {
+}
+
+ol.vertical {
+    margin: 9px 0 9px 0;
+	padding: 10px;
+    min-height: 10px;
+    background: #ababab;
+}
+
+ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+	overflow: hidden;
+}
+
+ol.simple_with_animation li.placeholder {
+  position: relative;
+}
+ol.simple_with_animation li.placeholder:before {
+  position: absolute;
+}
+
+ol.simple_with_animation li {
+    cursor: pointer;
+}
+ol.vertical li {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #cccccc;
+    color: #0088cc;
+    background: #eeeeee;
+	
+	display: inline-block;
+	width: 50px;
+}
