@@ -11,6 +11,8 @@
 	href="lib/sugar-web/graphics/css/sugar-200dpi.css">
 <link rel="stylesheet" href="css/activity.css">
 <script data-main="js/loader" src="lib/require.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 </head>
 
 <body>
@@ -27,9 +29,30 @@
 <div id="canvas">
 
   <!-- Replace this message with your own content -->
-  <h1>Congratulations!</h1>
-  <p>You are ready to develop this activity. Go ahead and edit the files.<br />
-    You can remove this message in the index.html.</p>
+  <div id="menu">
+	<h1>Fractionator</h1>
+	
+	<div id="diffRadio">
+	  <span class="spacer"><input type="radio" name="difficulty" value="easy" checked="checked" id="">Easy</span>
+	  <span class="spacer"><input type="radio" name="difficulty" value="medium">Medium</span>
+	  <input type="radio" name="difficulty" value="hard">Hard
+	</div>
+	<div id="amtRadio">
+	  <span class="spacer"><input type="radio" name="amount" value="3" checked="checked">5</span>
+	  <span class="spacer"><input type="radio" name="amount" value="5">7</span>
+	  <input type="radio" name="amount" value="7">12
+	</div>
+	
+	<button id="start">Start</button>
+  </div>
+  <div id="game">
+	<h1>Fractionator</h1>
+	<button id="check">Check</button>
+  </div>
+  <div id="gameOver">
+	<h1>Game Over</h1>
+	<button id="replay">Replay</button>
+  </div>
 
 </div>
 </body>

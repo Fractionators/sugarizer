@@ -1,3 +1,37 @@
 #main-toolbar #activity-button {
   background-image: url(../activity/activity-icon.svg);
 }
+
+#game {
+	display: none;
+	text-align: center;
+	margin: auto;
+    width: 600px;
+}
+
+#menu {
+	text-align: center;
+	margin: auto;
+    width: 300px;
+}
+
+#gameOver {
+	display: none;
+	text-align: center;
+	margin: auto;
+    width: 300px;
+}
+
+#diffRadio, #amtRadio {
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.spacer {
+	margin-right: 20px;
+}
+
+#start {
+    width: 100px;
+	background-color: green;
+}
