@@ -76,8 +76,8 @@ $(document).ready(function() {
 		$("#game").css("display", "block");
 		$("#gameOver").css("display", "none");
 		setUpGame();
-	});	
-	
+	});
+    
     $("#cardList").sortable({
 	  group: 'limited_drop_targets',
 	  isValidTarget: function  ($item, container) {
@@ -87,6 +87,8 @@ $(document).ready(function() {
 		  return $item.parent("ol")[0] == container.el[0];
 	  },
 	});
+    
+    
     //$("#cardList").disableSelection();
 });
 
@@ -116,10 +118,12 @@ function setUpGame() {
 	
 	// 0
 	if (difficulty == "easy") {
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></li>";
+		document.getElementById("zero").innerHTML = "<p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p>";
+        //newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></li>";
 	}
 	else { 
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
+        document.getElementById("zero").innerHTML = "<p><span class=\"value\">0</span>0</p>";
+		//newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
 	}
 		
 	for (i = 0; i < amt; i++) { 
@@ -140,10 +144,12 @@ function setUpGame() {
 	
 	// 1
 	if (difficulty == "easy") {
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></li>";
+		document.getElementById("one").innerHTML = "<p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p>";
+        //newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></li>";
 	}
 	else { 
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>1</p></li>";
+        document.getElementById("one").innerHTML = "<p><span class=\"value\">1</span>1</p>";
+		//newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>1</p></li>";
 	}
 	
 	var w = (amt+2)*76;
