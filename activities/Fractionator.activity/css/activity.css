@@ -15,6 +15,10 @@ h2 {
 	font-size: 1em;
 }
 
+h3 {
+	margin: 0px;
+}
+
 input[type=radio]:hover::before {
 	background-color: rgba(0,0,0,.3);
     border-radius: 50%;
@@ -186,6 +190,14 @@ button:hover {
 	width: 50px !important;
 }
 
+.dragged.static{
+	position: relative !important;
+	height: 40px !important;
+	width: 50px !important;
+	top: 0px !important;
+	left: 0px !important;
+}
+
 ol.list {
 	margin: auto;
     margin-top: 9px;
@@ -217,6 +229,11 @@ ol.list li {
 	transition:all .3s ease-out;
 }
 
+ol.list li.static {
+    background: rgb(99, 69, 230);
+	cursor: initial;
+}
+
 ol.list li:hover {
   -webkit-transform:translate(0px,-10px);
   -moz-transform:translate(0px,-10px);
@@ -224,6 +241,11 @@ ol.list li:hover {
   -o-transform:translate(0px,-10px);
   transform:translate(0px,-10px);
   box-shadow: 0px 10px 5px rgba(108, 108, 108, 0.5);
+}
+
+ol.list li.static:hover {
+  transform:translate(0px, 0px);
+  box-shadow: none;
 }
 
 li p {
@@ -235,9 +257,6 @@ ol.list li.placeholder {
 	background: rgba(255, 255, 255, .5);
 	border: 3px dashed #c3c3c3;
 	box-shadow: none;
-}
-ol.list li.placeholder::before {
-	position: absolute;
 }
 
 .value {

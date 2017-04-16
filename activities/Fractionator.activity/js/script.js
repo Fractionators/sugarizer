@@ -50,7 +50,15 @@ $(document).ready(function() {
 		setUpGame();
 	});	
 	
-    $("#cardList").sortable();
+    $("#cardList").sortable({
+	  group: 'limited_drop_targets',
+	  isValidTarget: function  ($item, container) {
+		if($item.is(".static"))
+		  return false;
+		else
+		  return $item.parent("ol")[0] == container.el[0];
+	  },
+	});
     $("#cardList").disableSelection();
 });
 
@@ -77,6 +85,9 @@ function setUpGame() {
 	}
 	
 	var fractions = randomFractions(amt);
+	
+	// 0
+	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
 		
 	for (i = 0; i < amt; i++) { 
 		val = fractions[i].value;
@@ -93,10 +104,14 @@ function setUpGame() {
 		newItemsHTML += "</p></li>";
 	} 
 	
-	var w = (amt *76);
+	// 1
+	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>1</p></li>";
+	
+	var w = (amt+2)*76;
 	var x = Number($("#game").css("width").split("px")[0]);
+	var z = 2;
 	while (w > x) {
-		w = w/2;
+		w = w/z;
 		console.log(w, x);
 	}
 	console.log(w, x);
