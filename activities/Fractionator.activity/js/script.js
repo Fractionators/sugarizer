@@ -82,7 +82,15 @@ function setUpGame() {
 		val = fractions[i].value;
 		numerator = fractions[i].numerator;
 		denominator = fractions[i].denominator;
-		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span><span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span></p></li>";
+		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span>";
+		
+		if (difficulty == "easy" || (difficulty == "medium" && Math.random() < 0.5)) {
+			newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
+		}
+		else {
+			newItemsHTML += "<span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span>";
+		}
+		newItemsHTML += "</p></li>";
 	} 
 	
 	var w = (amt *76);
