@@ -23,8 +23,36 @@ function makeFractions() {
 	}
 }
 
+function rotDeg(amt) {
+	var deg = 0;
+	if (amt > 50) {
+		deg = (100 - amt) / 100 * 360;
+	} 
+	else if (amt < 50) {
+		deg = (100 - (50 - amt)) / 100 * 360 * -1;
+	}
+	
+	return deg;
+}
+
+function showPieChart(tag, val) {
+	var deg = val*100;
+	
+	$(tag).css("transform","rotate("+rotDeg(deg)+"deg)");
+	if (deg > 50) {
+		$(tag).addClass("over50");
+	}
+}
+
+function makePieChart (val, id) {
+	var newHTML = "<div id=\"card"+id+"\"class=\"fraction cardFrac\"><div class=\"amtCircle\"></div></div>";
+	
+	return newHTML;
+}
+
 $(document).ready(function() { 
 	makeFractions();
+	showPieChart(".titleFrac .amtCircle", .33);
 
 	$("#start").on("click", function(){
 		$("#menu").css("display", "none");
@@ -59,7 +87,7 @@ $(document).ready(function() {
 		  return $item.parent("ol")[0] == container.el[0];
 	  },
 	});
-    $("#cardList").disableSelection();
+    //$("#cardList").disableSelection();
 });
 
 function setUpGame() {
@@ -87,7 +115,12 @@ function setUpGame() {
 	var fractions = randomFractions(amt);
 	
 	// 0
-	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
+	if (difficulty == "easy") {
+		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></li>";
+	}
+	else { 
+		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
+	}
 		
 	for (i = 0; i < amt; i++) { 
 		val = fractions[i].value;
@@ -96,7 +129,8 @@ function setUpGame() {
 		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span>";
 		
 		if (difficulty == "easy" || (difficulty == "medium" && Math.random() < 0.5)) {
-			newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
+			//newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
+			newItemsHTML += makePieChart(val, i);
 		}
 		else {
 			newItemsHTML += "<span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span>";
@@ -105,19 +139,35 @@ function setUpGame() {
 	} 
 	
 	// 1
-	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>1</p></li>";
+	if (difficulty == "easy") {
+		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></li>";
+	}
+	else { 
+		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>1</p></li>";
+	}
 	
 	var w = (amt+2)*76;
 	var x = Number($("#game").css("width").split("px")[0]);
 	var z = 2;
 	while (w > x) {
 		w = w/z;
-		console.log(w, x);
+		//console.log(w, x);
 	}
-	console.log(w, x);
+	//console.log(w, x);
 	
 	$("#cardList").css("width",w+"px");
 	document.getElementById("cardList").innerHTML = newItemsHTML;
+	
+	// Show pie
+	if (difficulty == "easy" || difficulty == "medium") {
+		for (i = 0; i < amt; i++) {
+			val = fractions[i].value;
+			showPieChart("#card"+i+" .amtCircle", val);
+		}
+		
+			showPieChart("#cardStart .amtCircle", 0);
+			showPieChart("#cardEnd .amtCircle", 1);
+	}
 }
 
 function randomFractions (amount) {
@@ -150,6 +200,7 @@ function check() {
 	for (i = 1; i < cards.length; i++) { 
 		if (cards[i-1] > cards[i]) {
 			correct = false;
+			console.log(i, cards[i-1], cards[i]);
 		}
 	} 
 	

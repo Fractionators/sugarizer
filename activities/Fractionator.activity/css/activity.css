@@ -54,24 +54,32 @@ input[type=radio]:disabled {
 .titleLabel1 {
 	top: -5%;
     left: 23%;
+	color: rgb(246, 157, 53);
 }
 
 .titleLabel2 {
 	top: 22%;
-    left: 65%;	
+    left: 65%;	 
 }
 
 .fraction {
 	width: 100px;
 	height: 100px;
 	position: relative;
-	background: linear-gradient(to right, rgb(195, 51, 163) 50%, rgb(46, 93, 255) 50%);
+	background: linear-gradient(to right, #fff 50%, rgb(246, 157, 53) 50%);
 	border-radius: 50%;
 	overflow: hidden;
-	border: #fff solid 3px;
+	border: #fff solid 2px;	
 }
 
-.fraction::before {
+.cardFrac {
+	width: 30px;
+	height: 30px;
+	margin: auto;
+}
+
+.amtCircle {
+    background: rgb(246, 157, 53);
     border-radius: 0 100% 100% 0 / 50%;
     content: '';
     display: block;
@@ -80,24 +88,19 @@ input[type=radio]:disabled {
     transform-origin: left;
 }
 
-.third::before {
-    background: rgb(46, 93, 255);
-    transform: rotate(-298.8deg);
+.amtCircle.over50 {
+    background: #fff !important;
 }
 
-.twoThird::before {
-    background: rgb(195, 51, 163);
-    transform: rotate(122.4deg);
+.titleFrac, .titleFrac .amtCircle.over50 {
+	border: #fff solid 3px;	
 }
 
-.quarter::before {
-    background: rgb(46, 93, 255);
-    transform: rotate(-270deg);
+.static .fraction {
+	background: linear-gradient(to right, #fff 50%, rgb(99, 69, 230) 50%);	
 }
-
-.threeQuarter::before {
-    background: rgb(195, 51, 163);
-    transform: rotate(90deg);
+.static .fraction .amtCircle {
+    background: rgb(99, 69, 230);	
 }
 
 #game {
