@@ -111,10 +111,9 @@ function check() {
 	var correct = true;
 	
 	var cards = [];
-	$('li').each(function(i, elem) {
-		cards.push($(elem).text());
+	$('li .value').each(function(i, elem) {
+		cards.push(Number($(elem).text()));
 	});
-	//console.log(cards);
 		
 	for (i = 1; i < cards.length; i++) { 
 		if (cards[i-1] > cards[i]) {

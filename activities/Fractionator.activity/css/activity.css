@@ -171,17 +171,8 @@ li p {
 }
 
 ol.list li.placeholder {
-	position: absolute;
-	background: transparent;
-	border: none;
-	border-radius: 0;
-	width: 0; 
-	height: 0; 
-	margin: 0; 
-	padding: 0; 
-	border-left: 7px solid transparent;
-	border-right: 7px solid transparent;
-	border-top: 7px solid #f00;
+	background: rgba(255, 255, 255, .5);
+	border: 3px dashed #c3c3c3;
 }
 ol.list li.placeholder:before {
 	position: absolute;
