@@ -92,12 +92,22 @@ input[type=radio]:disabled {
     background: #fff !important;
 }
 
+.f0 {
+    background: rgb(246, 157, 53); !important;
+}
+.f100 {
+    background: #fff !important;
+}
+
 .titleFrac, .titleFrac .amtCircle.over50 {
 	border: #fff solid 3px;	
 }
 
 .static .fraction {
 	background: linear-gradient(to right, #fff 50%, rgb(99, 69, 230) 50%);	
+}
+.static .fraction.f0 {
+	background: rgb(99, 69, 230) !important;	
 }
 .static .fraction .amtCircle {
     background: rgb(99, 69, 230);	
