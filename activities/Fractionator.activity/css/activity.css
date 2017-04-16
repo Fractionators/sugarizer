@@ -202,15 +202,17 @@ button:hover {
 }
 
 ol.list {
-	margin: auto;
+	/*margin: auto;*/
     margin-top: 9px;
     margin-bottom: 9px;
 	padding: 10px;
     min-height: 10px;
-    background: rgb(225, 186, 148);
+    /*background: rgb(225, 186, 148);*/
 	border-radius: 5px;
     list-style-type: none;
 	overflow: hidden;
+    
+    display: inline;
 }
 
 ol.list li {
@@ -260,6 +262,11 @@ ol.list li.placeholder {
 	background: rgba(255, 255, 255, .5);
 	border: 3px dashed #c3c3c3;
 	box-shadow: none;
+}
+
+/* Attempt to reconcile css with HTML changes - Brian Sandon*/
+#cards{
+    background: rgb(225, 186, 148);
 }
 
 .value {
