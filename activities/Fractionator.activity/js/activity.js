@@ -5,7 +5,6 @@ define(["sugar-web/activity/activity"], function (activity) {
 
 		// Initialize the activity.
 		activity.setup();
-
 	});
 
 });
