@@ -135,45 +135,24 @@ button {
 	border-color: rgb(238, 50, 110);
 }
 
-body.dragging, body.dragging * {
-  cursor: move !important;
-}
-
 .dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
+	position: absolute;
+	height: 40px !important;
+	width: 50px !important;
 }
 
-ol.simple_with_animation {
-}
-
-ol.vertical {
+ol.list {
     margin: 9px 0 9px 0;
 	padding: 10px;
     min-height: 10px;
     background: rgb(225, 186, 148);
 	border-radius: 5px;
-}
-
-ol {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 	overflow: hidden;
 }
 
-ol.simple_with_animation li.placeholder {
-  position: relative;
-}
-ol.simple_with_animation li.placeholder:before {
-  position: absolute;
-}
-
-ol.simple_with_animation li {
+ol.list li {
     cursor: pointer;
-}
-ol.vertical li {
     display: block;
     margin: 5px;
     padding: 5px;
@@ -183,5 +162,49 @@ ol.vertical li {
 	border-radius: 5px;
 	display: inline-block;
 	width: 50px;
-	height: 20px;
+	height: 40px;
+	font-size: 2em;
+}
+li p {
+	margin: inherit;
+	vertical-align: middle;
+}
+
+ol.list li.placeholder {
+	position: absolute;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	width: 0; 
+	height: 0; 
+	margin: 0; 
+	padding: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 7px solid #f00;
+}
+ol.list li.placeholder:before {
+	position: absolute;
+}
+
+.value {
+	display: none;
+}
+
+span.frac {
+  display: inline-block;
+  font-size: 50%;
+  text-align: center;
+}
+span.frac > sup {
+  display: block;
+  border-bottom: 1px solid;
+  font: inherit;
+}
+span.frac > span {
+  display: none;
+}
+span.frac > sub {
+  display: block;
+  font: inherit;
 }
