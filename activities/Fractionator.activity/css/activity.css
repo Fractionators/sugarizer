@@ -287,6 +287,11 @@ ol.list li.placeholder {
     float:left;
 }
 
+.cardEnd p {
+	margin: inherit;
+	vertical-align: middle;
+}
+
 /*end of changes*/
 
 .value {

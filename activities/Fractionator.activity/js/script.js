@@ -152,7 +152,7 @@ function setUpGame() {
 		//newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>1</p></li>";
 	}
 	
-	var w = (amt+2)*76;
+	var w = (amt/*+2*/)*76;
 	var x = Number($("#game").css("width").split("px")[0]);
 	var z = 2;
 	while (w > x) {
@@ -162,6 +162,7 @@ function setUpGame() {
 	//console.log(w, x);
 	
 	$("#cardList").css("width",w+"px");
+    $("#cards").css("width",(w+152)+"px");
 	document.getElementById("cardList").innerHTML = newItemsHTML;
 	
 	// Show pie
