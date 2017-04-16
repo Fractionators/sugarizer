@@ -45,7 +45,12 @@ function showPieChart(tag, val) {
 }
 
 function makePieChart (val, id) {
-	var newHTML = "<div id=\"card"+id+"\"class=\"fraction cardFrac\"><div class=\"amtCircle\"></div></div>";
+	var newHTML = "";
+	if (val != 1 && val != 0 && val != .5) {
+		newHTML += "<div id=\"card"+id+"\"class=\"fraction cardFrac\"><div class=\"amtCircle\"></div></div>";
+	} else {
+		newHTML += "<div id=\"card"+id+"\"class=\"fraction cardFrac f"+(val*100)+"\"></div>";		
+	}
 	
 	return newHTML;
 }
