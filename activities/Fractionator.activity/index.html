@@ -38,12 +38,12 @@
 	<h2>a game of fractions</h2>
 
 	<div id="titleCircle">
-		<div class="fraction third"><span class="fractionLabel titleLabel1">&#8531;</span><span class="fractionLabel titleLabel2">&#8532;</span></div>
+		<div class="fraction third"><span class="fractionLabel titleLabel1"><p><span class="frac"><sup>1</sup><span>/</span><sub>3</sub></span></p></span><span class="fractionLabel titleLabel2"><p><span class="frac"><sup>2</sup><span>/</span><sub>3</sub></span></p></span></div>
 	</div>
 	<div id="diffRadio">
 	  <span class="spacer"><input type="radio" name="difficulty" value="easy" checked="checked" id="">Easy</span>
-	  <span class="spacer"><input type="radio" name="difficulty" value="medium">Medium</span>
-	  <input type="radio" name="difficulty" value="hard">Hard
+	  <span class="spacer"><input type="radio" name="difficulty" value="medium" disabled="true">Medium</span>
+	  <input type="radio" name="difficulty" value="hard" disabled="false">Hard
 	</div>
 	<div id="amtRadio">
 	  <span class="spacer"><input type="radio" name="amount" value="small" checked="checked">3</span>
@@ -63,7 +63,7 @@
   <div id="gameOver">
 	<h1>Game Over</h1>
 	<h2 id="results"></h2>
-	<button id="replay">Replay</button>
+	<button id="replay">Play Again</button>
 	<button id="back">Back to Menu</button>
   </div>
 

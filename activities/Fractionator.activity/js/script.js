@@ -50,8 +50,8 @@ $(document).ready(function() {
 		setUpGame();
 	});	
 	
-    $("#cardList" ).sortable();
-    $("#cardList" ).disableSelection();
+    $("#cardList").sortable();
+    $("#cardList").disableSelection();
 });
 
 function setUpGame() {
@@ -85,6 +85,15 @@ function setUpGame() {
 		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span><span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span></p></li>";
 	} 
 	
+	var w = (amt *76);
+	var x = Number($("#game").css("width").split("px")[0]);
+	while (w > x) {
+		w = w/2;
+		console.log(w, x);
+	}
+	console.log(w, x);
+	
+	$("#cardList").css("width",w+"px");
 	document.getElementById("cardList").innerHTML = newItemsHTML;
 }
 
@@ -124,6 +133,6 @@ function check() {
 	if (correct) {
 		document.getElementById("results").innerHTML = "Good Job!";
 	} else {
-		document.getElementById("results").innerHTML = "Try Again";		
+		document.getElementById("results").innerHTML = "Incorrect";		
 	}
 }

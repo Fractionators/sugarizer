@@ -15,6 +15,11 @@ h2 {
 	font-size: 1em;
 }
 
+input:disabled {
+	background: rgba(0,0,0,.5);
+	border-radius: 50%;
+}
+
 #titleCircle {
     width: 105px;
     height: 105px;
@@ -25,20 +30,20 @@ h2 {
 .fractionLabel {
 	color: #fff;
     position: absolute;
-    font-size: 1.5em;
+    font-size: 2em;
     background: transparent;
     top: 40%;
     left: 40%;
 }
 
 .titleLabel1 {
-	top: 20%;
-    left: 20%;
+	top: -5%;
+    left: 23%;
 }
 
 .titleLabel2 {
-	top: 60%;
-    left: 60%;	
+	top: 22%;
+    left: 65%;	
 }
 
 .fraction {
@@ -125,12 +130,12 @@ button {
 	border-color: rgb(69, 191, 178);
 }
 
-#back {
+#replay {
 	background-color: rgb(52, 127, 239);
 	border-color: rgb(131, 180, 252);
 }
 
-#replay {
+#back {
 	background-color: rgb(240, 100, 145);
 	border-color: rgb(238, 50, 110);
 }
@@ -142,7 +147,9 @@ button {
 }
 
 ol.list {
-    margin: 9px 0 9px 0;
+	margin: auto;
+    margin-top: 9px;
+    margin-bottom: 9px;
 	padding: 10px;
     min-height: 10px;
     background: rgb(225, 186, 148);
@@ -153,17 +160,16 @@ ol.list {
 
 ol.list li {
     cursor: pointer;
-    display: block;
     margin: 5px;
     padding: 5px;
     border: 3px solid #fff;
     color: #fff;
     background: rgb(246, 157, 53);
 	border-radius: 5px;
-	display: inline-block;
 	width: 50px;
 	height: 40px;
 	font-size: 2em;
+	float: left;
 }
 li p {
 	margin: inherit;
