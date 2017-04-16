@@ -65,18 +65,18 @@ function setUpGame() {
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
 	
-	document.getElementById("cardList").innerHTML = "<li>1</li><li>2</li><li>3</li><li>4</li><li>5</li>";
+	document.getElementById("cardList").innerHTML = "<li>1</li><li>2</li><li>3</li>";
 		
-	if (amount != "5") {
+	if (amount != "small") {
 		var newItemsHTML = "";
-		if (amount == "7") {
-			for (i = 0; i < 2; i++) { 
-				newItemsHTML += "<li>"+(i+6)+"</li>";
+		if (amount == "med") {
+			for (i = 0; i < 3; i++) { 
+				newItemsHTML += "<li>"+(i+4)+"</li>";
 			}
 		}
-		else if (amount == "12") {
-			for (i = 0; i < 7; i++) { 
-				newItemsHTML += "<li>"+(i+6)+"</li>";
+		else if (amount == "large") {
+			for (i = 0; i < 9; i++) { 
+				newItemsHTML += "<li>"+(i+4)+"</li>";
 			} 
 		}
 		document.getElementById("cardList").innerHTML += newItemsHTML;
