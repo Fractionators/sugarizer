@@ -2,11 +2,109 @@
   background-image: url(../activity/activity-icon.svg);
 }
 
+#canvas {
+	background-color: rgb(242, 209, 168);
+}
+
+
+h1, h2, h3, h4, h5, h6, canvas * {
+	font-family: cursive;
+}
+
+h2 {
+	font-size: 1em;
+}
+
+h3 {
+	margin: 0px;
+}
+
+input[type=radio]:hover::before {
+	background-color: rgba(0,0,0,.3);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    width: 40%;
+    height: 40%;
+    margin-left: 30%;
+    margin-top: 30%;
+}
+
+input[type=radio]:disabled {
+	background: rgba(0,0,0,.5);
+	border-radius: 50%;
+}
+
+#titleCircle {
+    width: 105px;
+    height: 105px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.fractionLabel {
+	color: #fff;
+    position: absolute;
+    font-size: 2em;
+    background: transparent;
+    top: 40%;
+    left: 40%;
+}
+
+.titleLabel1 {
+	top: -5%;
+    left: 23%;
+}
+
+.titleLabel2 {
+	top: 22%;
+    left: 65%;	
+}
+
+.fraction {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	background: linear-gradient(to right, rgb(195, 51, 163) 50%, rgb(46, 93, 255) 50%);
+	border-radius: 50%;
+	overflow: hidden;
+	border: #fff solid 3px;
+}
+
+.fraction::before {
+    border-radius: 0 100% 100% 0 / 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    transform-origin: left;
+}
+
+.third::before {
+    background: rgb(46, 93, 255);
+    transform: rotate(-298.8deg);
+}
+
+.twoThird::before {
+    background: rgb(195, 51, 163);
+    transform: rotate(122.4deg);
+}
+
+.quarter::before {
+    background: rgb(46, 93, 255);
+    transform: rotate(-270deg);
+}
+
+.threeQuarter::before {
+    background: rgb(195, 51, 163);
+    transform: rotate(90deg);
+}
+
 #game {
 	display: none;
 	text-align: center;
 	margin: auto;
-    width: 50%;
+    width: 80%;
 }
 
 #menu {
@@ -24,65 +122,165 @@
 
 #diffRadio, #amtRadio {
 	padding: 10px;
-	margin-bottom: 20px;
 }
 
 .spacer {
 	margin-right: 20px;
 }
 
-#start {
+button {
     width: 100px;
-	background-color: green;
+	border-radius: 10px;
+	border: 3px solid black;
+	color: #fff;
+	cursor: pointer;
 }
 
-body.dragging, body.dragging * {
-  cursor: move !important;
+button:active {
+	color: #fff;
+}
+
+button:hover {
+	color: #fff;
+	-webkit-transition: 1s; /* Safari */
+    transition: 1s;
+	transition-timing-function: ease-out;
+}
+
+#start {
+	margin-top: 20px;
+	background-color: rgb(57, 181, 74);
+	border-color: rgb(39, 132, 52);
+}
+#start:hover {
+	background-color: rgb(39, 132, 52);
+	border-color: rgb(57, 181, 74);
+}
+
+#check {
+	background-color: rgb(112, 207, 215);
+	border-color: rgb(69, 191, 178);
+}
+#check:hover {
+	border-color: rgb(112, 207, 215);
+	background-color: rgb(69, 191, 178);
+}
+
+#replay {
+	background-color: rgb(52, 127, 239);
+	border-color: rgb(131, 180, 252);
+}
+#replay:hover {
+	border-color: rgb(52, 127, 239);
+	background-color: rgb(131, 180, 252);
+}
+
+#back {
+	background-color: rgb(240, 100, 145);
+	border-color: rgb(238, 50, 110);
+}
+#back:hover {
+	border-color: rgb(240, 100, 145);
+	background-color: rgb(238, 50, 110);
 }
 
 .dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
+	position: absolute;
+	height: 40px !important;
+	width: 50px !important;
 }
 
-
-
-ol.simple_with_animation {
+.dragged.static{
+	position: relative !important;
+	height: 40px !important;
+	width: 50px !important;
+	top: 0px !important;
+	left: 0px !important;
 }
 
-ol.vertical {
-    margin: 9px 0 9px 0;
+ol.list {
+	margin: auto;
+    margin-top: 9px;
+    margin-bottom: 9px;
 	padding: 10px;
     min-height: 10px;
-    background: #ababab;
-}
-
-ol {
+    background: rgb(225, 186, 148);
+	border-radius: 5px;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
 	overflow: hidden;
 }
 
-ol.simple_with_animation li.placeholder {
-  position: relative;
-}
-ol.simple_with_animation li.placeholder:before {
-  position: absolute;
-}
-
-ol.simple_with_animation li {
+ol.list li {
     cursor: pointer;
-}
-ol.vertical li {
-    display: block;
     margin: 5px;
     padding: 5px;
-    border: 1px solid #cccccc;
-    color: #0088cc;
-    background: #eeeeee;
-	
-	display: inline-block;
+    border: 3px solid #fff;
+    color: #fff;
+    background: rgb(246, 157, 53);
+	border-radius: 5px;
 	width: 50px;
+	height: 40px;
+	font-size: 2em;
+	float: left;
+	-webkit-transition:all .3s ease-out;
+	-moz-transition:all .3s ease-out;
+	-ms-transition:all .3s ease-out;
+	-o-transition:all .3s ease-out;
+	transition:all .3s ease-out;
+}
+
+ol.list li.static {
+    background: rgb(99, 69, 230);
+	cursor: initial;
+}
+
+ol.list li:hover {
+  -webkit-transform:translate(0px,-10px);
+  -moz-transform:translate(0px,-10px);
+  -ms-transform:translate(0px,-10px);
+  -o-transform:translate(0px,-10px);
+  transform:translate(0px,-10px);
+  box-shadow: 0px 10px 5px rgba(108, 108, 108, 0.5);
+}
+
+ol.list li.static:hover {
+  transform:translate(0px, 0px);
+  box-shadow: none;
+}
+
+li p {
+	margin: inherit;
+	vertical-align: middle;
+}
+
+ol.list li.placeholder {
+	background: rgba(255, 255, 255, .5);
+	border: 3px dashed #c3c3c3;
+	box-shadow: none;
+}
+
+.value {
+	display: none;
+}
+
+.fracImg {
+	height: 30px;
+}
+
+span.frac {
+  display: inline-block;
+  font-size: 50%;
+  text-align: center;
+}
+span.frac > sup {
+  display: block;
+  border-bottom: 1px solid;
+  font: inherit;
+}
+span.frac > span {
+  display: none;
+}
+span.frac > sub {
+  display: block;
+  font: inherit;
 }

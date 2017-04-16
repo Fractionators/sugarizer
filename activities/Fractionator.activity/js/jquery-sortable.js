@@ -191,8 +191,9 @@
   function getRelativePosition(pointer, element) {
     var offset = element.offset()
     return {
-      left: pointer.left - offset.left,
-      top: pointer.top - offset.top
+		// FRACTIONATOR CHANGE: CARD SIZE
+      left: pointer.left - offset.left - 30,
+      top: pointer.top - offset.top - 30
     }
   }
 
@@ -225,7 +226,7 @@
       this.dragProxy = $.proxy(this.drag, this)
       this.dropProxy = $.proxy(this.drop, this)
       this.placeholder = $(this.options.placeholder)
-
+		
       if(!options.isValidTarget)
         this.options.isValidTarget = undefined
     }

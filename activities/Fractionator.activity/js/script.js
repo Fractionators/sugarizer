@@ -1,6 +1,31 @@
 var adjustment;
+var denominators = [1,2,3,4,5,6,8,10,12,100]
+var possible = [170];
+var names = [170];
+
+function Fraction (index) {
+    this.value = possible[index];
+    this.fraction = names[index];
+	this.numerator = this.fraction.split("/")[0];
+	this.denominator = this.fraction.split("/")[1];
+}
+
+function makeFractions() {
+	count = 0;
+	for (i = 0; i < denominators.length; i++) {
+		for (j = 0; j <= denominators[i]; j++) {
+			if(denominators[i] != 100 || Math.random() < 0.25) {
+				names[count]=""+j+"/"+denominators[i];
+				possible[count] = j/denominators[i];
+				count++;
+			}
+		} 
+	}
+}
 
 $(document).ready(function() { 
+	makeFractions();
+
 	$("#start").on("click", function(){
 		$("#menu").css("display", "none");
 		$("#game").css("display", "block");
@@ -25,72 +50,102 @@ $(document).ready(function() {
 		setUpGame();
 	});	
 	
-	$("ol.simple_with_animation").sortable({	
-	  group: 'simple_with_animation',
-	  pullPlaceholder: false,
-	  // animation on drop
-	  onDrop: function  ($item, container, _super) {
-		var $clonedItem = $('<li/>').css({height: 0});
-		$item.before($clonedItem);
-		$clonedItem.animate({'height': $item.height()});
-
-		$item.animate($clonedItem.position(), function  () {
-		  $clonedItem.detach();
-		  _super($item, container);
-		});
+    $("#cardList").sortable({
+	  group: 'limited_drop_targets',
+	  isValidTarget: function  ($item, container) {
+		if($item.is(".static"))
+		  return false;
+		else
+		  return $item.parent("ol")[0] == container.el[0];
 	  },
-
-	  // set $item relative to cursor position
-	  onDragStart: function ($item, container, _super) {
-		var offset = $item.offset(),
-			pointer = container.rootGroup.pointer;
-
-		adjustment = {
-		  left: pointer.left - offset.left,
-		  top: pointer.top - offset.top
-		};
-
-		_super($item, container);
-	  },
-	  onDrag: function ($item, position) {
-		$item.css({
-		  left: position.left - adjustment.left,
-		  top: position.top - adjustment.top
-		});
-	  }
 	});
+    $("#cardList").disableSelection();
 });
 
 function setUpGame() {
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
 	
-	document.getElementById("cardList").innerHTML = "<li>1</li><li>2</li><li>3</li><li>4</li><li>5</li>";
+	var newItemsHTML = "";
+	var amt = 0;
+	var val = "";
 		
-	if (amount != "5") {
-		var newItemsHTML = "";
-		if (amount == "7") {
-			for (i = 0; i < 2; i++) { 
-				newItemsHTML += "<li>"+(i+6)+"</li>";
-			}
-		}
-		else if (amount == "12") {
-			for (i = 0; i < 7; i++) { 
-				newItemsHTML += "<li>"+(i+6)+"</li>";
-			} 
-		}
-		document.getElementById("cardList").innerHTML += newItemsHTML;
+	switch (amount){
+		case "small":
+			amt = 3;
+			break;
+		case "med":
+			amt = 6;
+			break;
+		case "large":
+			amt = 12;
+			break;
+		default:
+			break;
 	}
+	
+	var fractions = randomFractions(amt);
+	
+	// 0
+	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
+		
+	for (i = 0; i < amt; i++) { 
+		val = fractions[i].value;
+		numerator = fractions[i].numerator;
+		denominator = fractions[i].denominator;
+		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span>";
+		
+		if (difficulty == "easy" || (difficulty == "medium" && Math.random() < 0.5)) {
+			newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
+		}
+		else {
+			newItemsHTML += "<span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span>";
+		}
+		newItemsHTML += "</p></li>";
+	} 
+	
+	// 1
+	newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>1</p></li>";
+	
+	var w = (amt+2)*76;
+	var x = Number($("#game").css("width").split("px")[0]);
+	var z = 2;
+	while (w > x) {
+		w = w/z;
+		console.log(w, x);
+	}
+	console.log(w, x);
+	
+	$("#cardList").css("width",w+"px");
+	document.getElementById("cardList").innerHTML = newItemsHTML;
+}
+
+function randomFractions (amount) {
+	var fractions = [amount];
+	for (i = 0; i < amount; i++) { 
+		fractions[i] = randomFraction();
+	}
+	return fractions;
+}
+
+function randomFraction() {
+	var rand = getRandomInt(0,possible.length);
+	return new Fraction(rand);
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function check() {
 	var correct = true;
 	
 	var cards = [];
-	$('li').each(function(i, elem) {
-		cards.push($(elem).text());
+	$('li .value').each(function(i, elem) {
+		cards.push(Number($(elem).text()));
 	});
-	//console.log(cards);
 		
 	for (i = 1; i < cards.length; i++) { 
 		if (cards[i-1] > cards[i]) {
@@ -101,6 +156,6 @@ function check() {
 	if (correct) {
 		document.getElementById("results").innerHTML = "Good Job!";
 	} else {
-		document.getElementById("results").innerHTML = "Try Again";		
+		document.getElementById("results").innerHTML = "Incorrect";		
 	}
 }

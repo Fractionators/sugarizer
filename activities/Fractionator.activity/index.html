@@ -11,7 +11,9 @@
 	href="lib/sugar-web/graphics/css/sugar-200dpi.css">
 <link rel="stylesheet" href="css/activity.css">
 <script data-main="js/loader" src="lib/require.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script-->
+ <!--script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script-->
+<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jquery-sortable.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 </head>
@@ -33,27 +35,29 @@
   <!-- Replace this message with your own content -->
   <div id="menu">
 	<h1>Fractionator</h1>
+	<h2>a game of fractions</h2>
+
+	<div id="titleCircle">
+		<div class="fraction third"><span class="fractionLabel titleLabel1"><p><span class="frac"><sup>1</sup><span>/</span><sub>3</sub></span></p></span><span class="fractionLabel titleLabel2"><p><span class="frac"><sup>2</sup><span>/</span><sub>3</sub></span></p></span></div>
+	</div>
+	<h3>Difficulty</h3>
 	<div id="diffRadio">
 	  <span class="spacer"><input type="radio" name="difficulty" value="easy" checked="checked" id="">Easy</span>
 	  <span class="spacer"><input type="radio" name="difficulty" value="medium">Medium</span>
 	  <input type="radio" name="difficulty" value="hard">Hard
 	</div>
+	<h3>Amount</h3>
 	<div id="amtRadio">
-	  <span class="spacer"><input type="radio" name="amount" value="5" checked="checked">5</span>
-	  <span class="spacer"><input type="radio" name="amount" value="7">7</span>
-	  <input type="radio" name="amount" value="12">12
+	  <span class="spacer"><input type="radio" name="amount" value="small" checked="checked">3</span>
+	  <span class="spacer"><input type="radio" name="amount" value="med">6</span>
+	  <input type="radio" name="amount" value="large">12
 	</div>
 	<button id="start">Start</button>
   </div>
   <div id="game">
 	<h1>Fractionator</h1>
 	<div>
-		<ol class="simple_with_animation vertical" id="cardList">
-			<li>1</li>
-			<li>2</li>
-			<li>3</li>
-			<li>4</li>
-			<li>5</li>
+		<ol class="list" id="cardList">
 		</ol>
 	</div>
 	<button id="check">Check</button>
@@ -61,7 +65,7 @@
   <div id="gameOver">
 	<h1>Game Over</h1>
 	<h2 id="results"></h2>
-	<button id="replay">Replay</button>
+	<button id="replay">Play Again</button>
 	<button id="back">Back to Menu</button>
   </div>
 
