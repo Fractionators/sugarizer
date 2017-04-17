@@ -23,6 +23,72 @@ function makeFractions() {
 	}
 }
 
+function randomFractions (amount) {
+	var fractions = [amount];
+	for (i = 0; i < amount; i++) {
+		var newFrac = randomFractionNoDup(fractions);
+		fractions[i] = newFrac;
+	}
+	return fractions;
+}
+
+function randomFractionNoDup(fractions) {	
+	var newFrac;
+	do {
+		newFrac = randomFraction();
+	} while (hasFraction(fractions, newFrac) || hasValue(fractions, newFrac))
+	return newFrac;
+}
+
+function randomFraction() {
+	var rand = getRandomInt(0,possible.length);
+	return new Fraction(rand);
+}
+
+function hasFraction(fractions, frac) {
+	for (k = 0; k < fractions.length; k++){
+		if (fractions[k].fraction == frac.fraction) {
+			return true;
+		}
+	}
+	return false;
+}
+
+function hasValue(fractions, frac) {
+	var howMany = 0;
+	var lim = 2;
+	
+	if (frac.value == 0 || frac.value == 1) {
+		lim = 1;
+	}
+	
+	for (j = 0; j < fractions.length; j++){
+		if (fractions[j].value == frac.value) {
+			howMany++;
+			if (howMany >= lim) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function cleanArray(actual) {
+  var newArray = new Array();
+  for (var i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i]);
+    }
+  }
+  return newArray;
+}
+
 function rotDeg(amt) {
 	var deg = 0;
 	if (amt > 50) {
@@ -179,25 +245,6 @@ function setUpGame() {
 	}
 }
 
-function randomFractions (amount) {
-	var fractions = [amount];
-	for (i = 0; i < amount; i++) { 
-		fractions[i] = randomFraction();
-	}
-	return fractions;
-}
-
-function randomFraction() {
-	var rand = getRandomInt(0,possible.length);
-	return new Fraction(rand);
-}
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
 function check() {
 	var correct = true;
 	
@@ -209,7 +256,8 @@ function check() {
 	for (i = 1; i < cards.length; i++) { 
 		if (cards[i-1] > cards[i]) {
 			correct = false;
-			console.log(i, cards[i-1], cards[i]);
+			//console.log(i, cards[i-1], cards[i]);
+			break;
 		}
 	} 
 	
