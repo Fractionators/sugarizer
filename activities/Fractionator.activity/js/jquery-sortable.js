@@ -191,7 +191,7 @@
   function getRelativePosition(pointer, element) {
     var offset = element.offset()
     return {
-		// FRACTIONATOR CHANGE: CARD SIZE
+		// MARK: subtracted 30 to place mouse over the card
       left: pointer.left - offset.left - 30,
       top: pointer.top - offset.top - 30
     }

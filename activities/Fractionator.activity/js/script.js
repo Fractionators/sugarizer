@@ -1,8 +1,12 @@
+// MARK: Global Variables
 var adjustment;
 var denominators = [1,2,3,4,5,6,8,10,12,100]
 var possible = [170];
 var names = [170];
 
+// MARK: Fraction Logic
+
+// Fraction "Class"
 function Fraction (index) {
     this.value = possible[index];
     this.fraction = names[index];
@@ -10,6 +14,8 @@ function Fraction (index) {
 	this.denominator = this.fraction.split("/")[1];
 }
 
+// Creates the fraction pool based on denominators
+// For each denominator it inclueds 0/n to n/n
 function makeFractions() {
 	count = 0;
 	for (i = 0; i < denominators.length; i++) {
@@ -23,6 +29,7 @@ function makeFractions() {
 	}
 }
 
+// Returns an array of Fractions of a given length
 function randomFractions (amount) {
 	var fractions = [amount];
 	for (i = 0; i < amount; i++) {
@@ -32,6 +39,7 @@ function randomFractions (amount) {
 	return fractions;
 }
 
+// Returns a random fraction from the pool that is not in a given array.
 function randomFractionNoDup(fractions) {	
 	var newFrac;
 	do {
@@ -39,12 +47,13 @@ function randomFractionNoDup(fractions) {
 	} while (hasFraction(fractions, newFrac) || hasValue(fractions, newFrac))
 	return newFrac;
 }
-
+// Returns a random fraction from the pool
 function randomFraction() {
 	var rand = getRandomInt(0,possible.length);
 	return new Fraction(rand);
 }
 
+// Returns true if a given fraction is in an array of Fractions
 function hasFraction(fractions, frac) {
 	for (k = 0; k < fractions.length; k++){
 		if (fractions[k].fraction == frac.fraction) {
@@ -54,6 +63,7 @@ function hasFraction(fractions, frac) {
 	return false;
 }
 
+// Returns true if a given fraction's decimal value is already included more than twice. For the values 0 and 1, the tolerance is lowered to 1.
 function hasValue(fractions, frac) {
 	var howMany = 0;
 	var lim = 2;
@@ -73,12 +83,16 @@ function hasValue(fractions, frac) {
 	return false;
 }
 
+// MARK: Helper Functions
+
+// Returns a random int between a min and a max
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// Removes false values from an array (NaN, undefined, etc...)
 function cleanArray(actual) {
   var newArray = new Array();
   for (var i = 0; i < actual.length; i++) {
@@ -89,6 +103,7 @@ function cleanArray(actual) {
   return newArray;
 }
 
+// Calculates the amount of degrees to rotate a half circle to visualize a given percentage
 function rotDeg(amt) {
 	var deg = 0;
 	if (amt > 50) {
@@ -101,6 +116,9 @@ function rotDeg(amt) {
 	return deg;
 }
 
+// MARK: Pie Chart Logic
+
+// Given a decimal value and the object of reference, rotate the object the approprite degree
 function showPieChart(tag, val) {
 	var deg = val*100;
 	
@@ -121,10 +139,17 @@ function makePieChart (val, id) {
 	return newHTML;
 }
 
+// MARK: Main game logic
+
+// Initialization
 $(document).ready(function() { 
+	// Create our data
 	makeFractions();
+	
+	// Set up title screen
 	showPieChart(".titleFrac .amtCircle", .33);
 
+	// Button Logic
 	$("#start").on("click", function(){
 		$("#menu").css("display", "none");
 		$("#game").css("display", "block");
@@ -149,6 +174,7 @@ $(document).ready(function() {
 		setUpGame();
 	});	
 	
+	// Card Dragging Logic
     $("#cardList").sortable({
 	  group: 'limited_drop_targets',
 	  isValidTarget: function  ($item, container) {
@@ -161,16 +187,20 @@ $(document).ready(function() {
     //$("#cardList").disableSelection();
 });
 
+// Called on the start of a game
 function setUpGame() {
+	// Pull settings
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
 	
+	// Variables
 	var newItemsHTML = "";
 	var amt = 0;
 	var val = "";
 	var mpCounter = 0;
 	var mfCounter = 0;
-		
+	
+	// Set based on settings
 	switch (amount){
 		case "small":
 			amt = 3;
@@ -185,16 +215,20 @@ function setUpGame() {
 			break;
 	}
 	
+	// Get some fractions
 	var fractions = randomFractions(amt);
 	
-	// 0
+	// Make HTML
+	
+	// Static Marker - 0
 	if (difficulty == "easy") {
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></div>";
 	}
 	else { 
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">0</span>0</p></div>";
 	}
-		
+	
+	// Cards
 	for (i = 0; i < amt; i++) { 
 		val = fractions[i].value;
 		numerator = fractions[i].numerator;
@@ -213,7 +247,7 @@ function setUpGame() {
 		newItemsHTML += "</p></li>";
 	} 
 	
-	// 1
+	// Static Marker - 1
 	if (difficulty == "easy") {
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></div>";
 	}
@@ -221,46 +255,51 @@ function setUpGame() {
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">1</span>1</p></div>";
 	}
 	
+	// Calculates size of div
 	var w = (amt+2)*76;
 	var x = Number($("#game").css("width").split("px")[0]);
 	var z = 2;
 	while (w > x) {
 		w = w/z;
-		//console.log(w, x);
 	}
-	//console.log(w, x);
 	
+	// Save HTML
 	$("#cardList").css("width",w+"px");
 	document.getElementById("cardList").innerHTML = newItemsHTML;
 	
-	// Show pie
+	// Show Pie Charts
 	if (difficulty == "easy" || difficulty == "medium") {
 		for (i = 0; i < amt; i++) {
 			val = fractions[i].value;
 			showPieChart("#card"+i+" .amtCircle", val);
 		}
 		
-			showPieChart("#cardStart .amtCircle", 0);
-			showPieChart("#cardEnd .amtCircle", 1);
+		showPieChart("#cardStart .amtCircle", 0);
+		showPieChart("#cardEnd .amtCircle", 1);
 	}
 }
 
+// Checks the answer
 function check() {
 	var correct = true;
 	
+	// Turn list into array of the decimal values
 	var cards = [];
 	$('li .value').each(function(i, elem) {
 		cards.push(Number($(elem).text()));
 	});
 		
+	// Compare the decimal values
 	for (i = 1; i < cards.length; i++) { 
 		if (cards[i-1] > cards[i]) {
+			// If the current card is smaller than the one that came before it then they are out of order
 			correct = false;
 			//console.log(i, cards[i-1], cards[i]);
 			break;
 		}
-	} 
+	}
 	
+	// Display results
 	if (correct) {
 		document.getElementById("results").innerHTML = "Good Job!";
 	} else {

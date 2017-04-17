@@ -1,120 +1,13 @@
+/* Sugar CSS */
+
 #main-toolbar #activity-button {
   background-image: url(../activity/activity-icon.svg);
 }
 
+/* App CSS */
+
 #canvas {
 	background-color: rgb(242, 209, 168);
-}
-
-
-h1, h2, h3, h4, h5, h6, canvas * {
-	font-family: cursive;
-}
-
-h2 {
-	font-size: 1em;
-}
-
-h3 {
-	margin: 0px;
-}
-
-h4 {
-	font-size: 1.5em;
-}
-
-input[type=radio]:hover::before {
-	background-color: rgba(0,0,0,.3);
-    border-radius: 50%;
-    content: '';
-    display: block;
-    width: 40%;
-    height: 40%;
-    margin-left: 30%;
-    margin-top: 30%;
-}
-
-input[type=radio]:disabled {
-	background: rgba(0,0,0,.5);
-	border-radius: 50%;
-}
-
-#titleCircle {
-    width: 105px;
-    height: 105px;
-	margin: auto;
-	margin-bottom: 20px;
-}
-
-.fractionLabel {
-	color: #fff;
-    position: absolute;
-    font-size: 2em;
-    background: transparent;
-    top: 40%;
-    left: 40%;
-}
-
-.titleLabel1 {
-	top: -5%;
-    left: 23%;
-	color: rgb(246, 157, 53);
-}
-
-.titleLabel2 {
-	top: 22%;
-    left: 65%;	 
-}
-
-.fraction {
-	width: 100px;
-	height: 100px;
-	position: relative;
-	background: linear-gradient(to right, #fff 50%, rgb(246, 157, 53) 50%);
-	border-radius: 50%;
-	overflow: hidden;
-	border: #fff solid 2px;	
-}
-
-.cardFrac {
-	width: 30px;
-	height: 30px;
-	margin: auto;
-}
-
-.amtCircle {
-    background: rgb(246, 157, 53);
-    border-radius: 0 100% 100% 0 / 50%;
-    content: '';
-    display: block;
-    height: 100%;
-    margin-left: 50%;
-    transform-origin: left;
-}
-
-.amtCircle.over50 {
-    background: #fff !important;
-}
-
-.f0 {
-    background: rgb(246, 157, 53); !important;
-}
-.f100 {
-    background: #fff !important;
-}
-
-.titleFrac, .titleFrac .amtCircle.over50 {
-	border: #fff solid 3px;	
-}
-
-.static .fraction {
-	background: linear-gradient(to right, #fff 50%, rgb(99, 69, 230) 50%);	
-}
-.static .fraction.f0 {
-	background: rgb(99, 69, 230) !important;	
-}
-.static .fraction .amtCircle {
-    background: rgb(99, 69, 230);	
 }
 
 #game {
@@ -137,14 +30,21 @@ input[type=radio]:disabled {
     width: 300px;
 }
 
-#diffRadio, #amtRadio {
-	padding: 10px;
+h1, h2, h3, h4, h5, h6, canvas * {
+	font-family: cursive;
 }
 
-.spacer {
-	margin-right: 20px;
+h2 {
+	font-size: 1em;
 }
 
+h3 {
+	margin: 0px;
+}
+
+h4 {
+	font-size: 1.5em;
+}
 button {
     width: 100px;
 	border-radius: 10px;
@@ -199,6 +99,116 @@ button:hover {
 #back:hover {
 	border-color: rgb(240, 100, 145);
 	background-color: rgb(238, 50, 110);
+}
+
+/* Menu CSS */
+
+#diffRadio, #amtRadio {
+	padding: 10px;
+}
+
+input[type=radio]:hover::before {
+	background-color: rgba(0,0,0,.3);
+    border-radius: 50%;
+    content: '';
+    display: block;
+    width: 40%;
+    height: 40%;
+    margin-left: 30%;
+    margin-top: 30%;
+}
+
+input[type=radio]:disabled {
+	background: rgba(0,0,0,.5);
+	border-radius: 50%;
+}
+
+#titleCircle {
+    width: 105px;
+    height: 105px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.fractionLabel {
+	color: #fff;
+    position: absolute;
+    font-size: 2em;
+    background: transparent;
+    top: 40%;
+    left: 40%;
+}
+
+.titleLabel1 {
+	top: -5%;
+    left: 23%;
+	color: rgb(246, 157, 53);
+}
+
+.titleLabel2 {
+	top: 22%;
+    left: 65%;	 
+}
+
+.titleFrac, .titleFrac .amtCircle.over50 {
+	border: #fff solid 3px;	
+}
+
+/* Pie Chart */
+
+.fraction {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	background: linear-gradient(to right, #fff 50%, rgb(246, 157, 53) 50%);
+	border-radius: 50%;
+	overflow: hidden;
+	border: #fff solid 2px;	
+}
+
+.cardFrac {
+	width: 30px;
+	height: 30px;
+	margin: auto;
+}
+
+.amtCircle {
+    background: rgb(246, 157, 53);
+    border-radius: 0 100% 100% 0 / 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    transform-origin: left;
+}
+
+.amtCircle.over50 {
+    background: #fff !important;
+}
+
+.f0 {
+    background: rgb(246, 157, 53); !important;
+}
+.f100 {
+    background: #fff !important;
+}
+
+/* Static Card Pie Chart CSS */
+
+.static .fraction {
+	background: linear-gradient(to right, #fff 50%, rgb(99, 69, 230) 50%);	
+}
+.static .fraction.f0 {
+	background: rgb(99, 69, 230) !important;	
+}
+.static .fraction .amtCircle {
+    background: rgb(99, 69, 230);	
+}
+
+/* Card CSS */
+
+.spacer {
+	margin-right: 20px;
 }
 
 .dragged {
@@ -278,6 +288,8 @@ ol.list li.placeholder {
 .fracImg {
 	height: 30px;
 }
+
+/* Fraction CSS */
 
 span.frac {
   display: inline-block;
