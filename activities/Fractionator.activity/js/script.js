@@ -102,6 +102,8 @@ function setUpGame() {
 	var newItemsHTML = "";
 	var amt = 0;
 	var val = "";
+	var mpCounter = 0;
+	var mfCounter = 0;
 		
 	switch (amount){
 		case "small":
@@ -133,12 +135,14 @@ function setUpGame() {
 		denominator = fractions[i].denominator;
 		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span>";
 		
-		if (difficulty == "easy" || (difficulty == "medium" && Math.random() < 0.5)) {
+		if (difficulty == "easy" || (difficulty == "medium" && mpCounter <= amt/2 && (Math.random() < 0.5 || mfCounter > amt/2))) {
 			//newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
 			newItemsHTML += makePieChart(val, i);
+			mpCounter++;
 		}
 		else {
 			newItemsHTML += "<span class=\"frac\"><sup>"+numerator+"</sup><span>/</span><sub>"+denominator+"</sub></span>";
+			mfCounter++;
 		}
 		newItemsHTML += "</p></li>";
 	} 
