@@ -133,7 +133,7 @@ $(document).ready(function() {
 	});	
 	$("#check").on("click", function(){
 		$("#menu").css("display", "none");
-		$("#game").css("display", "none");
+		//$("#game").css("display", "none");
 		$("#gameOver").css("display", "block");
 		check();
 	});	
@@ -264,6 +264,6 @@ function check() {
 	if (correct) {
 		document.getElementById("results").innerHTML = "Good Job!";
 	} else {
-		document.getElementById("results").innerHTML = "Incorrect";		
+		document.getElementById("results").innerHTML = "Try Again!";		
 	}
 }
