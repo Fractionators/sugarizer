@@ -212,12 +212,15 @@ button:hover {
 }
 
 ol.list {
+    display: inline;
+    float:none;
+    
 	margin: auto;
     margin-top: 9px;
     margin-bottom: 9px;
 	padding: 10px;
     min-height: 10px;
-    background: rgb(225, 186, 148);
+    /*background: rgb(225, 186, 148);*/
 	border-radius: 5px;
     list-style-type: none;
 	overflow: hidden;
@@ -271,6 +274,35 @@ ol.list li.placeholder {
 	border: 3px dashed #c3c3c3;
 	box-shadow: none;
 }
+
+/* Attempt to reconcile css with HTML changes - Brian Sandon*/
+#cards{
+    margin: 0 auto;
+    background: rgb(225, 186, 148);
+    height: 70px;
+}
+
+.cardEnd{
+    display: inline-block;
+	cursor: initial;
+    margin: 5px;
+    padding: 5px;
+    border: 3px solid #fff;
+    background: rgb(99, 69, 230);
+    color: #fff;
+	border-radius: 5px;
+	width: 50px;
+	height: 40px;
+	font-size: 2em;
+    float:left;
+}
+
+.cardEnd p {
+	margin: inherit;
+	vertical-align: middle;
+}
+
+/*end of changes*/
 
 .value {
 	display: none;
