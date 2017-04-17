@@ -121,10 +121,10 @@ function setUpGame() {
 	
 	// 0
 	if (difficulty == "easy") {
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></li>";
+		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></div>";
 	}
 	else { 
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">0</span>0</p></li>";
+		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">0</span>0</p></div>";
 	}
 		
 	for (i = 0; i < amt; i++) { 
@@ -145,10 +145,10 @@ function setUpGame() {
 	
 	// 1
 	if (difficulty == "easy") {
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></li>";
+		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></div>";
 	}
 	else { 
-		newItemsHTML += "<li class=\"static\"><p><span class=\"value\">1</span>1</p></li>";
+		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">1</span>1</p></div>";
 	}
 	
 	var w = (amt+2)*76;

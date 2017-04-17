@@ -223,7 +223,7 @@ ol.list {
 	overflow: hidden;
 }
 
-ol.list li {
+ol.list li , .static {
     cursor: pointer;
     margin: 5px;
     padding: 5px;
@@ -242,7 +242,7 @@ ol.list li {
 	transition:all .3s ease-out;
 }
 
-ol.list li.static {
+ol.list .static {
     background: rgb(99, 69, 230);
 	cursor: initial;
 }
@@ -256,12 +256,7 @@ ol.list li:hover {
   box-shadow: 0px 10px 5px rgba(108, 108, 108, 0.5);
 }
 
-ol.list li.static:hover {
-  transform:translate(0px, 0px);
-  box-shadow: none;
-}
-
-li p {
+li p , .static p{
 	margin: inherit;
 	vertical-align: middle;
 }
