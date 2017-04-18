@@ -6,6 +6,10 @@
 
 /* App CSS */
 
+#help-button {
+	background-image: url(../activity/help-icon.svg);
+}
+
 #canvas {
 	background-color: rgb(242, 209, 168);
 }
@@ -30,6 +34,33 @@
     width: 300px;
 }
 
+#help {
+	width: 400px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 3px 20px;
+    background-color: rgb(52, 127, 239);
+    border: 3px solid rgb(131, 180, 252);
+    color: #fff;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+	margin-left: -200px;
+	display: none;
+	z-index: 10;
+}
+
+#cover{ 
+	position: fixed; 
+	top: 0; 
+	left: 0;
+	background: rgba(0,0,0,0.6); 
+	width: 100%; 
+	height: 100%; 
+	display: none; 
+	z-index: 5;
+}
+
 h1, h2, h3, h4, h5, h6, canvas * {
 	font-family: cursive;
 }
@@ -45,6 +76,12 @@ h3 {
 h4 {
 	font-size: 1.5em;
 }
+
+h5 {
+	margin: 10px;
+	font-size: 1.5em;
+}
+
 button {
     width: 100px;
 	border-radius: 10px;
@@ -92,11 +129,11 @@ button:hover {
 	background-color: rgb(131, 180, 252);
 }
 
-#back {
+#back, #close {
 	background-color: rgb(240, 100, 145);
 	border-color: rgb(238, 50, 110);
 }
-#back:hover {
+#back:hover, #close:hover {
 	border-color: rgb(240, 100, 145);
 	background-color: rgb(238, 50, 110);
 }
@@ -215,7 +252,7 @@ input[type=radio]:disabled {
 	position: absolute;
 	height: 40px !important;
 	width: 50px !important;
-	z-index: 100;
+	z-index: 1;
 }
 
 .dragged.static{

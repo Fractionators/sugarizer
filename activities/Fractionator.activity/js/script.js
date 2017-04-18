@@ -173,6 +173,14 @@ $(document).ready(function() {
 		$("#gameOver").css("display", "none");
 		setUpGame();
 	});	
+	$("#help-button").on("click", function(){
+		$("#cover").css("display", "block");
+		$("#help").css("display", "block");
+	});	
+	$("#close").on("click", function(){
+		$("#cover").css("display", "none");
+		$("#help").css("display", "none");
+	});	
 	
 	// Card Dragging Logic
     $("#cardList").sortable({
