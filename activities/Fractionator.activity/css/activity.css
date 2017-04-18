@@ -215,6 +215,7 @@ input[type=radio]:disabled {
 	position: absolute;
 	height: 40px !important;
 	width: 50px !important;
+	z-index: 100;
 }
 
 .dragged.static{
