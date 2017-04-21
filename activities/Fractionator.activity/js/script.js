@@ -3,6 +3,7 @@ var adjustment;
 var denominators = [1,2,3,4,5,6,8,10,12,100]
 var possible = [170];
 var names = [170];
+var gameMode = undefined;
 
 // MARK: Fraction Logic
 
@@ -82,6 +83,36 @@ function hasValue(fractions, frac) {
 	}
 	return false;
 }
+
+// MARK: Timer "class"
+function Timer(){
+    this.display = document.querySelector("#time");
+    
+    this.time = 0;
+    this.startTime = 0;
+    
+    this.animationID = 0;
+    
+    //Starts the timer
+    this.start = function(){
+        console.dir(this.display);
+        this.time = 0;
+        this.startTime = performance.now();
+        this.update();
+    };
+    //Updates the time and display
+    this.update = function(){
+        this.animationID = window.requestAnimationFrame(this.update.bind(this));
+        
+        this.time = Math.round(performance.now() - this.startTime);
+        this.display.innerHTML = this.time;
+    };
+    this.stop = function(){
+        window.cancelAnimationFrame(this.animationID);
+    };
+}
+//Initializes a new timer
+var timer = undefined;
 
 // MARK: Helper Functions
 
@@ -193,11 +224,15 @@ $(document).ready(function() {
 	  },
 	});
     //$("#cardList").disableSelection();
+    
+    //sets up the timer object
+    timer = new Timer();
 });
 
 // Called on the start of a game
 function setUpGame() {
 	// Pull settings
+    gameMode = $('input[name=mode]:checked').val();
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
 	
@@ -208,6 +243,14 @@ function setUpGame() {
 	var mpCounter = 0;
 	var mfCounter = 0;
 	
+    //Starts timer for timed mode
+    if(gameMode == "timed"){
+        $("#timerElement").css("display","block");
+        timer.start();
+    } else{
+        $("#timerElement").css("display","none");
+    }
+    
 	// Set based on settings
 	switch (amount){
 		case "small":
@@ -285,6 +328,7 @@ function setUpGame() {
 		showPieChart("#cardStart .amtCircle", 0);
 		showPieChart("#cardEnd .amtCircle", 1);
 	}
+    
 }
 
 // Checks the answer
@@ -309,7 +353,14 @@ function check() {
 	
 	// Display results
 	if (correct) {
+        
 		document.getElementById("results").innerHTML = "Good Job!";
+        
+        if(gameMode == "timed"){
+            timer.stop();
+            document.getElementById("results").innerHTML += "<br>Your time: " + timer.time;
+        }
+        
 	} else {
 		document.getElementById("results").innerHTML = "Try Again!";		
 	}

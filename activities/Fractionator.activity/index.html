@@ -44,7 +44,10 @@
 	</div>
 	
 	<!-- Options -->
-	<h3>Difficulty</h3>
+	<h3>Game Mode</h3>
+      <span class="spacer"><input type="radio" name="mode" value="standard" checked="checked" id="">Standard</span>
+	  <span class="spacer"><input type="radio" name="mode" value="timed">Timed</span>
+    <h3>Difficulty</h3>
 	<div id="diffRadio">
 	  <span class="spacer"><input type="radio" name="difficulty" value="easy" checked="checked" id="">Easy</span>
 	  <span class="spacer"><input type="radio" name="difficulty" value="medium">Medium</span>
@@ -62,6 +65,9 @@
   <!-- Game Screen -->
   <div id="game">
 	<h1>Fractionator</h1>
+    <div id="timerElement">
+        <b>Timer: </b> <span id="time">0</span>
+    </div>
 	<div>
 		<!-- The Cards; Filled in in script.js setUpGame() -->
 		<ol class="list" id="cardList">
