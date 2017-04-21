@@ -86,7 +86,7 @@ function hasValue(fractions, frac) {
 
 // MARK: Timer "class"
 function Timer(){
-    this.display = document.querySelector("#time");
+    this.display = document.querySelector("#timeDisplay");
     
     this.time = 0;
     this.startTime = 0;
@@ -104,7 +104,7 @@ function Timer(){
     this.update = function(){
         this.animationID = window.requestAnimationFrame(this.update.bind(this));
         
-        this.time = Math.round(performance.now() - this.startTime);
+        this.time = ((performance.now() - this.startTime)/1000).toFixed(2);
         this.display.innerHTML = this.time;
     };
     this.stop = function(){
