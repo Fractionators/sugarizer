@@ -95,7 +95,6 @@ function Timer(){
     
     //Starts the timer
     this.start = function(){
-        console.dir(this.display);
         this.time = 0;
         this.startTime = performance.now();
         this.update();
@@ -197,6 +196,8 @@ $(document).ready(function() {
 		$("#menu").css("display", "block");
 		$("#game").css("display", "none");
 		$("#gameOver").css("display", "none");
+        
+        timer.stop();
 	});	
 	$("#replay").on("click", function(){
 		$("#menu").css("display", "none");
