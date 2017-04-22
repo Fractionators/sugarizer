@@ -103,8 +103,8 @@ function Timer(){
     this.update = function(){
         this.animationID = window.requestAnimationFrame(this.update.bind(this));
         
-        this.time = ((performance.now() - this.startTime)/1000).toFixed(2);
-        this.display.innerHTML = this.time;
+        this.time = ((performance.now() - this.startTime)/1000);
+        this.display.innerHTML = this.time.toFixed(2);
     };
     this.stop = function(){
         window.cancelAnimationFrame(this.animationID);
@@ -112,6 +112,7 @@ function Timer(){
 }
 //Initializes a new timer
 var timer = undefined;
+var highScore = undefined;
 
 // MARK: Helper Functions
 
@@ -359,7 +360,15 @@ function check() {
         
         if(gameMode == "timed"){
             timer.stop();
-            document.getElementById("results").innerHTML += "<br>Your time: " + timer.time;
+            
+            var newTime = timer.time;
+            if((highScore == undefined) || (newTime < highScore)){
+                highScore = timer.time;
+                document.getElementById("results").innerHTML += "<br>New best time: " + newTime.toFixed(2);
+            } else{
+                document.getElementById("results").innerHTML += "<br>Your time: " + newTime.toFixed(2);
+                document.getElementById("results").innerHTML += "<br>Best time: " + highScore.toFixed(2);
+            }
         }
         
 	} else {
