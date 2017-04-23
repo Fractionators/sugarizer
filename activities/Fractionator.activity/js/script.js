@@ -24,7 +24,7 @@ var gameMode = undefined;
 //Enumerated value for difficulty
 var difficultySetting = 0;
 //Enumerated value for amount
-var  amountSetting = 0;
+var amountSetting = 0;
 
 // MARK: Fraction Logic
 
@@ -133,7 +133,9 @@ function Timer(){
 }
 //Initializes a new timer
 var timer = undefined;
-var highScore = undefined;
+var bestTimes = [[undefined,undefined,undefined],
+                [undefined,undefined,undefined],
+                [undefined,undefined,undefined]];
 
 // MARK: Helper Functions
 
@@ -402,12 +404,16 @@ function check() {
             timer.stop();
             
             var newTime = timer.time;
-            if((highScore == undefined) || (newTime < highScore)){
-                highScore = timer.time;
+            var currentBest = undefined;
+            if(difficultySetting >= 0 && amountSetting >= 0){
+                currentBest = bestTimes[difficultySetting][amountSetting];
+            }
+            if((currentBest == undefined) || (newTime < currentBest)){
+                bestTimes[difficultySetting][amountSetting] = timer.time;
                 document.getElementById("results").innerHTML += "<br>New best time: " + newTime.toFixed(2);
             } else{
                 document.getElementById("results").innerHTML += "<br>Your time: " + newTime.toFixed(2);
-                document.getElementById("results").innerHTML += "<br>Best time: " + highScore.toFixed(2);
+                document.getElementById("results").innerHTML += "<br>Best time: " + currentBest.toFixed(2);
             }
         }
         
