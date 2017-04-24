@@ -346,3 +346,12 @@ span.frac > sub {
   display: block;
   font: inherit;
 }
+
+/* Timer CSS*/
+#timerElement{
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-size: 1.2em;
+}
