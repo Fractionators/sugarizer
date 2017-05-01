@@ -113,22 +113,27 @@ function Timer(){
     this.startTime = 0;
     
     this.animationID = 0;
+    this.running = false;
     
     //Starts the timer
     this.start = function(){
         this.time = 0;
         this.startTime = performance.now();
+        this.running = true;
         this.update();
     };
     //Updates the time and display
     this.update = function(){
-        this.animationID = window.requestAnimationFrame(this.update.bind(this));
-        
-        this.time = ((performance.now() - this.startTime)/1000);
-        this.display.innerHTML = this.time.toFixed(2);
+        if(this.running){
+          this.animationID = window.requestAnimationFrame(this.update.bind(this));
+          
+          this.time = ((performance.now() - this.startTime)/1000);
+          this.display.innerHTML = this.time.toFixed(2);
+        }
     };
     this.stop = function(){
         window.cancelAnimationFrame(this.animationID);
+        this.running = false;
     };
 }
 //Initializes a new timer
@@ -260,6 +265,8 @@ function setUpGame() {
     gameMode = $('input[name=mode]:checked').val();
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
+    
+    $("#check").prop("disabled",false);
 	
 	// Variables
 	var newItemsHTML = "";
@@ -399,6 +406,7 @@ function check() {
 	if (correct) {
         
 		document.getElementById("results").innerHTML = "Good Job!";
+        $("#check").prop("disabled",true);
         
         if(gameMode == "timed"){
             timer.stop();
