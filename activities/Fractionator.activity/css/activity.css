@@ -119,6 +119,10 @@ button:hover {
 	border-color: rgb(112, 207, 215);
 	background-color: rgb(69, 191, 178);
 }
+#check:disabled {
+	background-color: rgb(171, 204, 206);
+	border-color: rgb(137, 174, 171);
+}
 
 #replay {
 	background-color: rgb(52, 127, 239);
@@ -345,4 +349,13 @@ span.frac > span {
 span.frac > sub {
   display: block;
   font: inherit;
+}
+
+/* Timer CSS*/
+#timerElement{
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    font-size: 1.2em;
 }

@@ -4,6 +4,28 @@ var denominators = [1,2,3,4,5,6,8,10,12,100]
 var possible = [170];
 var names = [170];
 
+//Game info
+//Difficulty pseudo-enumerator
+var DIFFICULTY = Object.freeze({
+    ERROR: -1,
+    EASY: 0,
+    MEDIUM: 1,
+    HARD: 2
+});
+//Amount pseudo-enumerator
+var AMOUNT = Object.freeze({
+    ERROR: -1,
+    SMALL: 0,
+    MED: 1,
+    LARGE: 2
+});
+//String that stores the game mode
+var gameMode = undefined;
+//Enumerated value for difficulty
+var difficultySetting = 0;
+//Enumerated value for amount
+var amountSetting = 0;
+
 // MARK: Fraction Logic
 
 // Fraction "Class"
@@ -82,6 +104,43 @@ function hasValue(fractions, frac) {
 	}
 	return false;
 }
+
+// MARK: Timer "class"
+function Timer(){
+    this.display = document.querySelector("#timeDisplay");
+    
+    this.time = 0;
+    this.startTime = 0;
+    
+    this.animationID = 0;
+    this.running = false;
+    
+    //Starts the timer
+    this.start = function(){
+        this.time = 0;
+        this.startTime = performance.now();
+        this.running = true;
+        this.update();
+    };
+    //Updates the time and display
+    this.update = function(){
+        if(this.running){
+          this.animationID = window.requestAnimationFrame(this.update.bind(this));
+          
+          this.time = ((performance.now() - this.startTime)/1000);
+          this.display.innerHTML = this.time.toFixed(2);
+        }
+    };
+    this.stop = function(){
+        window.cancelAnimationFrame(this.animationID);
+        this.running = false;
+    };
+}
+//Initializes a new timer
+var timer = undefined;
+var bestTimes = [[undefined,undefined,undefined],
+                [undefined,undefined,undefined],
+                [undefined,undefined,undefined]];
 
 // MARK: Helper Functions
 
@@ -166,6 +225,8 @@ $(document).ready(function() {
 		$("#menu").css("display", "block");
 		$("#game").css("display", "none");
 		$("#gameOver").css("display", "none");
+        
+        timer.stop();
 	});	
 	$("#replay").on("click", function(){
 		$("#menu").css("display", "none");
@@ -193,13 +254,19 @@ $(document).ready(function() {
 	  },
 	});
     //$("#cardList").disableSelection();
+    
+    //sets up the timer object
+    timer = new Timer();
 });
 
 // Called on the start of a game
 function setUpGame() {
 	// Pull settings
+    gameMode = $('input[name=mode]:checked').val();
     var difficulty = $('input[name=difficulty]:checked').val();
     var amount = $('input[name=amount]:checked').val();
+    
+    $("#check").prop("disabled",false);
 	
 	// Variables
 	var newItemsHTML = "";
@@ -208,18 +275,45 @@ function setUpGame() {
 	var mpCounter = 0;
 	var mfCounter = 0;
 	
+    //Starts timer for timed mode
+    if(gameMode == "timed"){
+        $("#timerElement").css("display","block");
+        timer.start();
+    } else{
+        $("#timerElement").css("display","none");
+    }
+    //Set difficulty
+    switch(difficulty){
+        case "easy":  
+            difficultySetting = DIFFICULTY.EASY;
+            break;
+        case "medium": 
+            difficultySetting = DIFFICULTY.MEDIUM;
+            break;
+        case "hard": 
+            difficultySetting = DIFFICULTY.HARD;
+            break;
+        default:
+            difficultySetting = DIFFICULTY.ERROR;
+            break;
+    };
+    
 	// Set based on settings
 	switch (amount){
 		case "small":
+            amountSetting = AMOUNT.SMALL;
 			amt = 3;
 			break;
 		case "med":
+            amountSetting = AMOUNT.MED;
 			amt = 6;
 			break;
 		case "large":
+            amountSetting = AMOUNT.LARGE;
 			amt = 12;
 			break;
 		default:
+            amountSetting = AMOUNT.ERROR;
 			break;
 	}
 	
@@ -229,7 +323,7 @@ function setUpGame() {
 	// Make HTML
 	
 	// Static Marker - 0
-	if (difficulty == "easy") {
+    if(difficultySetting == DIFFICULTY.EASY){
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">0</span>"+makePieChart(0, "Start")+"</p></div>";
 	}
 	else { 
@@ -243,7 +337,7 @@ function setUpGame() {
 		denominator = fractions[i].denominator;
 		newItemsHTML += "<li><p><span class=\"value\">"+val+"</span>";
 		
-		if (difficulty == "easy" || (difficulty == "medium" && mpCounter <= amt/2 && (Math.random() < 0.5 || mfCounter > amt/2))) {
+		if (difficultySetting == DIFFICULTY.EASY || (difficultySetting == DIFFICULTY.MEDIUM && mpCounter <= amt/2 && (Math.random() < 0.5 || mfCounter > amt/2))) {
 			//newItemsHTML += "<span><img class=\"fracImg\" src=\"images/pie.svg\" alt=\""+numerator+" over "+denominator+"\"></span>";
 			newItemsHTML += makePieChart(val, i);
 			mpCounter++;
@@ -256,7 +350,7 @@ function setUpGame() {
 	} 
 	
 	// Static Marker - 1
-	if (difficulty == "easy") {
+	if (difficultySetting == DIFFICULTY.EASY) {
 		newItemsHTML += "<div class=\"static\"><p><span class=\"value\">1</span>"+makePieChart(1, "End")+"</p></div>";
 	}
 	else { 
@@ -285,6 +379,7 @@ function setUpGame() {
 		showPieChart("#cardStart .amtCircle", 0);
 		showPieChart("#cardEnd .amtCircle", 1);
 	}
+    
 }
 
 // Checks the answer
@@ -309,7 +404,27 @@ function check() {
 	
 	// Display results
 	if (correct) {
+        
 		document.getElementById("results").innerHTML = "Good Job!";
+        $("#check").prop("disabled",true);
+        
+        if(gameMode == "timed"){
+            timer.stop();
+            
+            var newTime = timer.time;
+            var currentBest = undefined;
+            if(difficultySetting >= 0 && amountSetting >= 0){
+                currentBest = bestTimes[difficultySetting][amountSetting];
+            }
+            if((currentBest == undefined) || (newTime < currentBest)){
+                bestTimes[difficultySetting][amountSetting] = timer.time;
+                document.getElementById("results").innerHTML += "<br>New best time: " + newTime.toFixed(2);
+            } else{
+                document.getElementById("results").innerHTML += "<br>Your time: " + newTime.toFixed(2);
+                document.getElementById("results").innerHTML += "<br>Best time: " + currentBest.toFixed(2);
+            }
+        }
+        
 	} else {
 		document.getElementById("results").innerHTML = "Try Again!";		
 	}
