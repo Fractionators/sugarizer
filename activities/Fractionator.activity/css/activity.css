@@ -12,6 +12,7 @@
 
 #canvas {
 	background-color: rgb(242, 209, 168);
+	background-image: url(../assets/woodPattern.png);
 }
 
 #game {
