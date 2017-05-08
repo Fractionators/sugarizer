@@ -3,4 +3,4 @@ name = Fractionator
 activity_version = 1
 bundle_id = org.sugarlabs.Fractionator
 exec = sugar-activity-web
-icon = fractionator-icon
+icon = activity-icon
