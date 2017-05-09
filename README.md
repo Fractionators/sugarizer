@@ -69,3 +69,10 @@ Completed | Individual Team Proposals | Moving Cards | Functional Game Loop | Se
 5. Choose the main folder of this repo and click OK
 6. Sugarizer should show up as an extension
 7. Click to launch Sugarizer
+
+## Future Development
+As of our final commits there are no outstanding to-do items. This project will run on any sugarizer-compatable machine.
+
+To continue work or to pull from this project use the instructions under "Running the Project" to get the game running. Then you can make any changes or pull code from the Fractionators folder which is located within the Activities folder.
+
+Our [final summary and presentation](https://docs.google.com/presentation/d/1nyYc2sGj486odVl5rGA07QVg53a8HjcfGCyW7PPMyXs/edit?usp=sharing) is also available.
