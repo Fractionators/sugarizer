@@ -1,3 +1,10 @@
+/**
+ * script.js
+ * (C) 2017 by Brian Sandon (bxs9775@rit.edu), Jacob Westerback (sjc5283@g.rit.edu)
+ * Released under Apache 2.0
+**/
+"use strict";
+
 // MARK: Global Variables
 var adjustment;
 var denominators = [1,2,3,4,5,6,8,10,12,100]
