@@ -71,7 +71,9 @@ Completed | Individual Team Proposals | Moving Cards | Functional Game Loop | Se
 7. Click to launch Sugarizer
 
 ## Future Development
-As of our final commits there are no outstanding to-do items. This project will run on any sugarizer-compatable machine.
+As of our final commits there are no outstanding bugs or to-do items. This project will run on any sugarizer-compatable machine. Two suggestions for additional features are
+* Screen/display adjustemts for diffrent screen sizes/on resize
+* Visual seperations of fractions on pie charts
 
 To continue work or to pull from this project use the instructions under "Running the Project" to get the game running. Then you can make any changes or pull code from the Fractionators folder which is located within the Activities folder.
 
