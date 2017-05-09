@@ -52,7 +52,7 @@ Fractionator will be a game for fourth graders focusing on the topic of Number a
 	* Does it work on the OLPC? Code quality and git commit history. 
 	* Quality of the wiki entry at sugarlabs.org
 
-### TimeLine
+### Time Line
 . | Team Proposal | Prototype | Working Version | Final Version
 -------------|----------------------|--------------|------------------------|------------------
 Due Date | 4/10 | 4/19 | 5/01 | 5/10
