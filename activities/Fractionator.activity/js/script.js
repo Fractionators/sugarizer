@@ -12,6 +12,7 @@ var possible = [170];
 var names = [170];
 
 //Game info
+
 //Difficulty pseudo-enumerator
 var DIFFICULTY = Object.freeze({
     ERROR: -1,
@@ -19,6 +20,7 @@ var DIFFICULTY = Object.freeze({
     MEDIUM: 1,
     HARD: 2
 });
+
 //Amount pseudo-enumerator
 var AMOUNT = Object.freeze({
     ERROR: -1,
@@ -26,10 +28,13 @@ var AMOUNT = Object.freeze({
     MED: 1,
     LARGE: 2
 });
+
 //String that stores the game mode
 var gameMode = undefined;
+
 //Enumerated value for difficulty
 var difficultySetting = 0;
+
 //Enumerated value for amount
 var amountSetting = 0;
 
@@ -76,6 +81,7 @@ function randomFractionNoDup(fractions) {
 	} while (hasFraction(fractions, newFrac) || hasValue(fractions, newFrac))
 	return newFrac;
 }
+
 // Returns a random fraction from the pool
 function randomFraction() {
 	var rand = getRandomInt(0,possible.length);
@@ -114,11 +120,12 @@ function hasValue(fractions, frac) {
 
 // MARK: Timer "class"
 function Timer(){
+	// hook to html
     this.display = document.querySelector("#timeDisplay");
     
+	// variables
     this.time = 0;
     this.startTime = 0;
-    
     this.animationID = 0;
     this.running = false;
     
@@ -129,6 +136,7 @@ function Timer(){
         this.running = true;
         this.update();
     };
+	
     //Updates the time and display
     this.update = function(){
         if(this.running){
@@ -138,11 +146,14 @@ function Timer(){
           this.display.innerHTML = this.time.toFixed(2);
         }
     };
+	
+	// Stops the timer
     this.stop = function(){
         window.cancelAnimationFrame(this.animationID);
         this.running = false;
     };
 }
+
 //Initializes a new timer
 var timer = undefined;
 var bestTimes = [[undefined,undefined,undefined],
@@ -289,6 +300,7 @@ function setUpGame() {
     } else{
         $("#timerElement").css("display","none");
     }
+	
     //Set difficulty
     switch(difficulty){
         case "easy":  

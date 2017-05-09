@@ -21,16 +21,18 @@
 <body>
 
 <div id="main-toolbar" class="toolbar">
+
+  <!-- Sugarizer Icon Button -->
   <button class="toolbutton" id="activity-button" title="My Activity"></button>
 
-  <!-- Add more buttons here -->
+  <!-- Sugarizer Help Button -->
   <button class="toolbutton" id="help-button" title="Help"></button>
 
-  <!-- Buttons with class="pull-right" will be right aligned -->
+  <!-- Sugarizer Stop Button -->
   <button class="toolbutton pull-right" id="stop-button" title="Stop"></button>
 </div>
 
-<!-- The content of your activity goes inside the canvas -->
+<!-- Fractionator Activity -->
 <div id="canvas">
 
   <!-- Menu -->
@@ -45,8 +47,10 @@
 	
 	<!-- Options -->
 	<h3>Game Mode</h3>
-      <span class="spacer"><input type="radio" name="mode" value="standard" checked="checked" id="">Standard</span>
-	  <span class="spacer"><input type="radio" name="mode" value="timed">Timed</span>
+	<div id="typeRadio">
+	  <span class="spacer"><input type="radio" name="mode" value="standard" checked="checked" id="">Standard</span>
+	  <input type="radio" name="mode" value="timed">Timed
+	</div>
     <h3>Difficulty</h3>
 	<div id="diffRadio">
 	  <span class="spacer"><input type="radio" name="difficulty" value="easy" checked="checked" id="">Easy</span>
@@ -65,9 +69,11 @@
   <!-- Game Screen -->
   <div id="game">
 	<h1>Fractionator</h1>
+	<!-- Timer -->
     <div id="timerElement">
         <b>Timer: </b> <span id="timeDisplay">0</span>
     </div>
+	<!-- Game Play -->
 	<div>
 		<!-- The Cards; Filled in in script.js setUpGame() -->
 		<ol class="list" id="cardList">
@@ -81,6 +87,7 @@
 	<button id="replay">Play Again</button>
 	<button id="back">Back to Menu</button>
   </div>
+  <!-- Instructions -->
   <div id="cover"></div>
   <div id="help">
 	<h5>How to Play</h5>

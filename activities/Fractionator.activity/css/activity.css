@@ -4,6 +4,7 @@
  * (C) 2017 Brian Sandon (bxs9775@rit.edu), Jacob Westerback (sjc5283@g.rit.edu)
  * Released under Apache 2.0
 **/
+
 /* Sugar CSS */
 
 #main-toolbar #activity-button {
@@ -89,6 +90,8 @@ h5 {
 	font-size: 1.5em;
 }
 
+/* Button CSS */
+
 button {
     width: 100px;
 	border-radius: 10px;
@@ -151,7 +154,7 @@ button:hover {
 
 /* Menu CSS */
 
-#diffRadio, #amtRadio {
+#diffRadio, #amtRadio, #typeRadio{
 	padding: 10px;
 }
 
@@ -358,7 +361,8 @@ span.frac > sub {
   font: inherit;
 }
 
-/* Timer CSS*/
+/* Timer CSS */
+
 #timerElement{
     display: none;
     position: absolute;
