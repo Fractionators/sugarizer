@@ -11,8 +11,6 @@ The project folder "Fractionator" can be found in the "activities" folder. It wi
 ## The Game : Fractionator
 **Team** : Jacob Westerback, Brian Sandon, Megan Smith
 
-[Source Code](https://github.com/Fractionators/sugarizer)
-
 #### Short Description
 Fractionator will be a game for fourth graders focusing on the topic of Number and Operations — Fractions: Teaching the extended understanding of fraction equivalence and ordering. Students will be asked to place visualizations of fractions in the correct order.
 
