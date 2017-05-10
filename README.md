@@ -70,6 +70,9 @@ Completed | Individual Team Proposals | Moving Cards | Functional Game Loop | Se
 6. Sugarizer should show up as an extension
 7. Click to launch Sugarizer
 
+## Links
+* [sugarlabs wiki link](https://wiki.sugarlabs.org/go/Activities/Fractionator)
+
 ## Future Development
 As of our final commits there are no outstanding bugs or to-do items. This project will run on any sugarizer-compatable machine. Two suggestions for additional features are
 * Screen/display adjustemts for diffrent screen sizes/on resize
